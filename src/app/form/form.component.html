@@ -1,0 +1,35 @@
+<form novalidate [formGroup]="user" (ngSubmit)="submitform()">
+	<label>
+    <span>Full name</span>
+    <input
+      type="text"
+      placeholder="Your full name"
+      formControlName="name">
+  </label>
+	{{ name.invalid }}
+	<div formGroupName="account">
+		<label>
+      <span>Email address</span>
+      <input
+        type="email"
+        placeholder="Your email address"
+        formControlName="email">
+    </label>
+		<label>
+      <span>Confirm address</span>
+      <input
+        type="email"
+        placeholder="Confirm your email address"
+        formControlName="confirm">
+    </label>
+		{{ email.invalid }}
+		{{ user.get('account').get('confirm').dirty }}
+	</div>
+	<button type="submit">Sign up</button>
+</form>
+
+<br />
+<!-- 
+<form novalidate [formGroup]="user">
+	{{ email.errors | json }}
+</form> -->
