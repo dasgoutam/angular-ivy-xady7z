@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  FormControl,
+  AbstractControl,
   FormGroup,
   Validators,
   FormBuilder
@@ -22,7 +22,8 @@ export class FormComponent implements OnInit {
       account: this.fb.group({
         email: ["goutam2475@gmail.com", Validators.email],
         confirm: ["", Validators.email]
-      })
+      }),
+      age: ["", this.ageValidator(20, 30)]
     });
   }
 
@@ -41,5 +42,19 @@ export class FormComponent implements OnInit {
 
   seeValue() {
     console.log(this.user.value);
+  }
+
+  ageValidator(min: number, max: number) {
+    //factory function
+
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      if (
+        control.value !== null &&
+        (isNaN(control.value) || control.value < min || control.value > max)
+      ) {
+        return { ageValidator: true };
+      }
+      return null;
+    };
   }
 }

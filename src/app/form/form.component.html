@@ -7,6 +7,7 @@
       formControlName="name">
   </label>
 	{{ name.invalid }}
+	<br/>
 	<div formGroupName="account">
 		<label>
       <span>Email address</span>
@@ -15,6 +16,7 @@
         placeholder="Your email address"
         formControlName="email">
     </label>
+		<br>
 		<label>
       <span>Confirm address</span>
       <input
@@ -25,6 +27,12 @@
 		{{ email.invalid }}
 		{{ user.get('account').get('confirm').dirty }}
 	</div>
+	<label>
+    <span>Age:</span>
+    <input type="text" formControlName="age">
+  </label>
+	{{ user.get('age').valid }}
+	<br>
 	<button type="submit">Sign up</button>
 </form>
 
